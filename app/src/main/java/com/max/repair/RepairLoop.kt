@@ -205,7 +205,7 @@ class RepairLoop(
                         return@withContext RepairResult(
                             success = false,
                             error = "Step failed: ${step.description}",
-                            stepResults = results
+                            appliedSteps = results
                         )
                     }
                 }
@@ -510,7 +510,7 @@ data class RepairAttempt(
     val id: String,
     val failure: FailureExplanation,
     val proposedFix: ProposedFix,
-    val status: RepairStatus,
+    var status: RepairStatus,
     val createdAt: Long
 )
 
