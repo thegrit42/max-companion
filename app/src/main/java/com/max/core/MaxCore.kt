@@ -1,7 +1,7 @@
 package com.max.core
 
 import com.max.log.ActionLog
-import com.max.log.ActionLog.ApprovalStatus
+import com.max.log.ApprovalStatus
 import com.max.log.LogStatus
 import com.max.log.LogType
 import com.max.memory.MemoryBank
