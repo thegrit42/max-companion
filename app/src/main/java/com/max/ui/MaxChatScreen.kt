@@ -1,9 +1,6 @@
 package com.max.ui
 
-import androidx.compose.animation.animateColorAsState
-import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -20,18 +17,19 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.systemBars
+import androidx.compose.foundation.layout.ime
+import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.foundation.layout.windowInsetsBottomHeight
 import com.max.core.MaxProposal
 import com.max.core.MaxResponse
 import com.max.core.MaxState
 import com.max.core.RiskLevel
 import kotlinx.coroutines.launch
 
-/**
- * Max Chat Screen - Primary interface for interacting with Max.
- */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MaxChatScreen(
@@ -51,23 +49,11 @@ fun MaxChatScreen(
     val listState = rememberLazyListState()
     val scope = rememberCoroutineScope()
 
-    // Add initial greeting
-    LaunchedEffect(Unit) {
-        if (messages.isEmpty()) {
-            messages = listOf(
-                ChatMessage(
-                    content = "I'm Max. I'm your local companion.\n\nI work for you and only you. Everything stays on your device unless you ask me to search the web.\n\nWhat can I help with?",
-                    isFromUser = false,
-                    timestamp = System.currentTimeMillis()
-                )
-            )
-        }
-    }
-
     Column(
         modifier = modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
+            .navigationBarsPadding()  // Fix input box behind nav bar
     ) {
         // Status bar
         StatusBar(
@@ -93,7 +79,6 @@ fun MaxChatScreen(
                 )
             }
 
-            // Show approval buttons if there's a pending proposal
             if (currentProposal != null) {
                 item {
                     ApprovalPanel(
@@ -142,7 +127,6 @@ fun MaxChatScreen(
                 }
             }
 
-            // Show warning panel if there's a pending warning
             if (currentWarning != null) {
                 item {
                     WarningPanel(
@@ -191,7 +175,7 @@ fun MaxChatScreen(
             }
         }
 
-        // Input area
+        // Input area - properly inset from system navigation bar
         InputArea(
             text = inputText,
             onTextChange = { inputText = it },
@@ -227,14 +211,15 @@ fun MaxChatScreen(
                         
                         isLoading = false
                         
-                        // Scroll to bottom
                         listState.animateScrollToItem(messages.size - 1)
                     }
                 }
             },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(12.dp)
+                .padding(horizontal = 12.dp, vertical = 8.dp)
+                .windowInsetsPadding(WindowInsets.ime)
+                .windowInsetsPadding(WindowInsets.systemBars.only(WindowInsetsSides.Bottom))
         )
     }
 }
@@ -246,9 +231,9 @@ private fun StatusBar(
     modifier: Modifier = Modifier
 ) {
     val stateColor = when (state) {
-        MaxState.THINKING -> Color(0xFF4CAF50)  // Green
-        MaxState.PROPOSING -> Color(0xFFFFA726) // Orange
-        MaxState.ACTING -> Color(0xFF42A5F5)    // Blue
+        MaxState.THINKING -> Color(0xFF4CAF50)
+        MaxState.PROPOSING -> Color(0xFFFFA726)
+        MaxState.ACTING -> Color(0xFF42A5F5)
     }
 
     val stateLabel = when (state) {
@@ -263,7 +248,6 @@ private fun StatusBar(
             .padding(horizontal = 16.dp, vertical = 8.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        // State indicator
         Box(
             modifier = Modifier
                 .size(10.dp)
@@ -290,7 +274,6 @@ private fun StatusBar(
 
         Spacer(modifier = Modifier.weight(1f))
 
-        // Model indicator
         Text(
             text = "Qwen 7B",
             fontSize = 10.sp,

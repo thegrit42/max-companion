@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "com.max"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.max"
         minSdk = 26 // Android 8.0+ for biometric and modern APIs
-        targetSdk = 35
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0.0"
 
