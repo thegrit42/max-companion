@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Max theme -->
+    <style name="Theme.Max" parent="android:Theme.Material.NoActionBar">
+        <item name="android:colorPrimary">@color/max_primary</item>
+        <item name="android:colorPrimaryDark">@color/max_background</item>
+        <item name="android:colorAccent">@color/max_secondary</item>
+        <item name="android:statusBarColor">@color/max_background</item>
+        <item name="android:navigationBarColor">@color/max_background</item>
+        <item name="android:windowBackground">@color/max_background</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+</resources>

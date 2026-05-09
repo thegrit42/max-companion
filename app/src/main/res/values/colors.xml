@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Max colors - Dark, calm, trustworthy -->
+    <color name="max_background">#0A0A0B</color>
+    <color name="max_surface">#141416</color>
+    <color name="max_surface_variant">#1E1E22</color>
+    <color name="max_primary">#6B8AFE</color>
+    <color name="max_primary_container">#1A2544</color>
+    <color name="max_secondary">#4ECDC4</color>
+    <color name="max_secondary_container">#143D3A</color>
+    <color name="max_tertiary">#FF6B6B</color>
+    <color name="max_tertiary_container">#442222</color>
+    <color name="max_error">#FF5252</color>
+    <color name="max_error_container">#3B1111</color>
+    <color name="max_on_background">#E8E8EC</color>
+    <color name="max_on_surface">#F0F0F4</color>
+</resources>

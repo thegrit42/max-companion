@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Max</string>
+    <string name="max_introduction">I\'m Max. I\'m your local companion. I work for you and only you.</string>
+    <string name="approve">Approve</string>
+    <string name="deny">Deny</string>
+    <string name="stop_now">STOP NOW</string>
+    <string name="lockdown">Lockdown</string>
+    <string name="exit_lockdown">Exit Lockdown</string>
+    <string name="rules">Rules</string>
+    <string name="memory">Memory</string>
+    <string name="log">Log</string>
+    <string name="risk_low">Low</string>
+    <string name="risk_medium">Medium</string>
+    <string name="risk_high">High</string>
+</resources>
